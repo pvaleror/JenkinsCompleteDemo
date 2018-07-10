@@ -12,8 +12,8 @@ pipeline {
       when {
         not{
           environment name: 'ID_RECORD', value: '00000'
-          beforeAgent true
         }
+        beforeAgent true
       }
       //configFileProvider([configFile('GlobalVars'), configFile('Global2')]) {
       //  sh 'echo ConfigFile $FOO $TOO $GO'
