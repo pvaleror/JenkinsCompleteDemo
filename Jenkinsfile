@@ -23,6 +23,7 @@ pipeline {
         //sh "echo ID_RECORD: ${params.ID_RECORD}"
         addInfoBadge(text: "some test")
         addShortText(text: "this is the text")
+        addShortText(text: "${params.ID_RECORD}")
         sh 'echo retag'
         sh 'echo verificarActividad'
         sh 'echo identificarProyectos'
