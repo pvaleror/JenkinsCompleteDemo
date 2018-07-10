@@ -27,7 +27,7 @@ pipeline {
         addShortText(text: "${params.ID_RECORD}",border:0) //retag
         sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
         
-        sh "echo ${params.SOME_TXT} -- ${SOME_TXT} -- "
+        sh "echo -- ${SOME_TXT} -- "
         
         sh "echo ${verificarActividad}"
         sh 'echo identificarProyectos'
