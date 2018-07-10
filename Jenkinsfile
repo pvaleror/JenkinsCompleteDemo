@@ -21,9 +21,9 @@ pipeline {
       steps{
         sh "set +x"
         //sh "echo ID_RECORD: ${params.ID_RECORD}"
-        addInfoBadge(text: "some test")
+        addInfoBadge(text: "some test",id:"info")
         addShortText(text: "this is the text")
-        addShortText(text: "${params.ID_RECORD}")
+        addShortText(text: "${params.ID_RECORD}",background:"Transparent")
         sh 'echo retag'
         sh 'echo verificarActividad'
         sh 'echo identificarProyectos'
@@ -59,6 +59,7 @@ pipeline {
     }
     stage("Desplegar WebSphere"){
       steps{
+        removeBadges(id: "info")
         sh 'echo retag'
         sh 'echo retag'
         sh 'echo retag'
