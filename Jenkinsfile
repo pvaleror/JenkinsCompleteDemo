@@ -9,17 +9,15 @@ pipeline {
   }
   stages{
     stage('prepare'){
-      //when {
-      //  environment name: 'ID_RECORD', value: '00000'
-      //  beforeAgent true
-      //}
+      when {
+        environment name: 'ID_RECORD', value: '00000'
+        beforeAgent true
+      }
       //configFileProvider([configFile('GlobalVars'), configFile('Global2')]) {
       //  sh 'echo ConfigFile $FOO $TOO $GO'
       //}
       steps{
-        sh 'echo ID_RECORD:'
-        sh "${params.ID_RECORD}"
-        sh '${params.ID_RECORD}'
+        sh 'echo ID_RECORD: ${params.ID_RECORD}'
         sh 'echo retag'
         sh 'echo verificarActividad'
         sh 'echo identificarProyectos'
