@@ -3,7 +3,7 @@ pipeline {
     label 'master'
   }
   parameters {
-    string(defaultValue: "00000", description: 'What Record ID to deploy?', name: 'ID_RECORD')
+    string(defaultValue: "00001", description: 'What Record ID to deploy?', name: 'ID_RECORD')
     // choices are newline separated
     choice(choices: 'Development\nTest\nProduction', description: 'What Target to Deploy?', name: 'TARGET')
   }
