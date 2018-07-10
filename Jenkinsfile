@@ -21,7 +21,7 @@ pipeline {
       steps{
         sh "set +x"
         //sh "echo ID_RECORD: ${params.ID_RECORD}"
-        currentBuild.rawBuild.getActions().add(GroovyPostbuildAction.createShortText("text"));
+        addBadge(icon: "info", text: "some test")
         sh 'echo retag'
         sh 'echo verificarActividad'
         sh 'echo identificarProyectos'
