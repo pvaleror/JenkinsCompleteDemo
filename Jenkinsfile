@@ -23,7 +23,7 @@ pipeline {
         addInfoBadge(text: "some test",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0) //retag
         sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
-        someVar = "some More"
+        someVar="some More"
         sh "echo $someVar"
         
         sh "echo ${verificarActividad}"
