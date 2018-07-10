@@ -2,6 +2,11 @@ pipeline {
   agent {
     label 'master'
   }
+  parameters {
+    string(defaultValue: "00000", description: 'What Record ID to deploy?', name: 'ID_RECORD')
+    // choices are newline separated
+    choice(choices: 'US-EAST-1\nUS-WEST-2', description: 'What AWS region?', name: 'region')
+  }
   stages{
     stage('prepare'){
       //when {
