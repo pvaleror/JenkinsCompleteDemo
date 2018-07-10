@@ -22,8 +22,9 @@ pipeline {
         //sh "echo ID_RECORD: ${params.ID_RECORD}"
         addInfoBadge(text: "some test",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0) //retag
-        sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
-        sh returnStatus: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl'
+        verificarActividad = sh(returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl').trim() //verificarActividad
+        
+        sh "echo ${verificarActividad}"
         sh 'echo identificarProyectos'
         sh 'echo ValidarDespliegue'
         sh 'echo obtenerStreamOrigDest'
