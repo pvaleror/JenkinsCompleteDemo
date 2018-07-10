@@ -20,7 +20,8 @@ pipeline {
       //}
       steps{
         sh "set +x"
-        sh "echo ID_RECORD: ${params.ID_RECORD}"
+        //sh "echo ID_RECORD: ${params.ID_RECORD}"
+        currentBuild.rawBuild.getActions().add(GroovyPostbuildAction.createShortText("text"));
         sh 'echo retag'
         sh 'echo verificarActividad'
         sh 'echo identificarProyectos'
