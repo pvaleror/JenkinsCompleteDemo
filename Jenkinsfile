@@ -17,7 +17,7 @@ pipeline {
       //  sh 'echo ConfigFile $FOO $TOO $GO'
       //}
       steps{
-        sh 'echo ID_RECORD: ${params.ID_RECORD}'
+        sh "echo ID_RECORD: ${params.ID_RECORD}"
         sh 'echo retag'
         sh 'echo verificarActividad'
         sh 'echo identificarProyectos'
