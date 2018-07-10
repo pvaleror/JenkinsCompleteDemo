@@ -21,7 +21,8 @@ pipeline {
       steps{
         sh "set +x"
         //sh "echo ID_RECORD: ${params.ID_RECORD}"
-        addBadge(icon: "info", text: "some test")
+        addInfoBadge(text: "some test")
+        addShortText(text: "this is the text")
         sh 'echo retag'
         sh 'echo verificarActividad'
         sh 'echo identificarProyectos'
