@@ -3,9 +3,9 @@ pipeline {
     label 'master'
   }
   parameters {
-    string(defaultValue: "00000", description: 'What Record ID to deploy?', name: 'ID_RECORDS')
+    string(defaultValue: "00000", description: 'What Record ID to deploy?', name: 'ID_RECORD')
     // choices are newline separated
-    choice(choices: 'US-EAST-1\nUS-WEST-2', description: 'What AWS region?', name: 'region')
+    choice(choices: 'Development\nTest\nProduction', description: 'What Target to Deploy?', name: 'TARGET')
   }
   stages{
     stage('prepare'){
@@ -17,7 +17,9 @@ pipeline {
       //  sh 'echo ConfigFile $FOO $TOO $GO'
       //}
       steps{
-        sh 'echo ID_RECORD => $ID_RECORD - ${ID_RECORD} - ${params.ID_RECORD} - ${params.ID_RECORDS}'
+        sh 'echo ID_RECORD:'
+        sh "${params.ID_RECORD}"
+        sh '${params.ID_RECORD}'
         sh 'echo retag'
         sh 'echo verificarActividad'
         sh 'echo identificarProyectos'
