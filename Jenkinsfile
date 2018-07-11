@@ -28,7 +28,7 @@ pipeline {
         echo "${SOME_TXT}"
         addInfoBadge(text: "some test",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0) //retag
-        sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
+        //sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
         echo 'identifica  rProyectos'
         echo 'ValidarDespliegue'
         echo 'obtenerStreamOrigDest'
