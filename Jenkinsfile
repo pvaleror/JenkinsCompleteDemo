@@ -60,6 +60,7 @@ pipeline {
     }
     stage("Desplegar WebLogic"){
       steps{
+        echo "step: ${env.SOME_TXT} ${SOME_TXT}"
         sh 'echo Establecer Servidor Despliegue'
         sh 'echo -- Crear Carpeta Remota'
         sh 'echo Copiar archivos a server'
