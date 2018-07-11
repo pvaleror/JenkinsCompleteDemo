@@ -26,7 +26,6 @@ pipeline {
           }
         }
         echo "files: ${env.FILES}"
-        echo "other: ${env.OTHERVAR}"
         echo "${SOME_TXT}"
         addInfoBadge(text: "some test",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0) //retag
@@ -52,6 +51,7 @@ pipeline {
     }
     stage("Desplegar Oracle"){
       steps{
+        echo "other: ${env.OTHERVAR}"
         sh 'echo Construir Instrucciones'
         sh 'echo Desplegar Estructura'
         sh 'echo Desplegar Parametros'
