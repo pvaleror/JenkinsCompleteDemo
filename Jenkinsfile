@@ -24,7 +24,7 @@ pipeline {
       steps{
         
         //load "$JENKINS_HOME/envVars/global.properties"
-        echo "files: ${env.FILES}"
+        echo "files: ${env.FILES} - ${FILES} - ${params.FILES}"
         echo "${SOME_TXT}"
         addInfoBadge(text: "some test",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0) //retag
