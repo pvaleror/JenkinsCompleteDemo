@@ -19,10 +19,11 @@ pipeline {
         SOME_TXT = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl'
       }
       steps{
-        
-        load "${env.JENKINS_HOME}/envVars/global.groovy"
+        script{
+          def props = readProperties file:'${env.JENKINS_HOME}/envVars/global.properties';
+          env['FILES'] = props['FILES'];
+        }
         echo "files: ${env.FILES}"
-        echo "files: ${params.FILES}"
         echo "${SOME_TXT}"
         addInfoBadge(text: "some test",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0) //retag
