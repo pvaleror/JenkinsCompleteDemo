@@ -20,7 +20,7 @@ pipeline {
       }
       steps{
         script{
-          def props = readProperties file:'$JENKINS_HOME/envVars/global.properties';
+          def props = readProperties file:"$JENKINS_HOME/envVars/global.properties";
           env['FILES'] = props['FILES'];
         }
         echo "files: ${env.FILES}"
