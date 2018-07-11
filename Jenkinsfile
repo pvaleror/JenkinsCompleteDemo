@@ -26,19 +26,19 @@ pipeline {
         addInfoBadge(text: "some test",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0) //retag
         sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
-        sh "echo ${SOME_TXT}"
-        sh 'echo identificarProyectos'
-        sh 'echo ValidarDespliegue'
-        sh 'echo obtenerStreamOrigDest'
-        sh 'echo IdentificarHerramientas'
-        sh 'echo crearVista'
-        sh 'echo AislarCarpeta'
-        sh 'echo IniciarVistaTmp'
-        sh 'echo IniciarDeliver'
-        sh 'echo ObtenerIdActEntrega'
-        sh 'echo ObtenerObjetos'
-        sh 'echo RegistrarElementosDesplegar'
-        sh 'echo RegistrarCambiosCQ'
+        echo ${SOME_TXT}
+        echo 'identificarProyectos'
+        echo 'ValidarDespliegue'
+        echo 'obtenerStreamOrigDest'
+        echo 'IdentificarHerramientas'
+        echo 'crearVista'
+        echo 'AislarCarpeta'
+        echo 'IniciarVistaTmp'
+        echo 'IniciarDeliver'
+        echo 'ObtenerIdActEntrega'
+        echo 'ObtenerObjetos'
+        echo 'RegistrarElementosDesplegar'
+        echo 'RegistrarCambiosCQ'
       }
     }
     stage("Desplegar Oracle"){
