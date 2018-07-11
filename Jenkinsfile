@@ -24,6 +24,7 @@ pipeline {
           for (item in props){
             env[item.key] = item.value;
           }
+          env['FILES']=props['FILES']
         }
         echo "files: ${env.FILES}"
         echo "${SOME_TXT}"
