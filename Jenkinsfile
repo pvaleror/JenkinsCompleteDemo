@@ -18,17 +18,19 @@ pipeline {
       environment{
         SOME_TXT = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl'
       }
-      //configFileProvider([configFile('GlobalVars'), configFile('Global2')]) {
-      //  sh 'echo ConfigFile $FOO $TOO $GO'
-      //}
       steps{
         
         //load "$JENKINS_HOME/envVars/global.properties"
-        echo "files: ${env.FILES} - ${FILES} - ${params.FILES}"
+        echo "files: ${env.FILES}"
+        echo "files: ${params.FILES}"
+        echo "files: ${FILES}"
         echo "${SOME_TXT}"
         addInfoBadge(text: "some test",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0) //retag
         //sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
+        //configFileProvider([configFile('GlobalVars'), configFile('Global2')]) {
+        //  sh 'echo ConfigFile $FOO $TOO $GO'
+        //}
         echo 'identifica  rProyectos'
         echo 'ValidarDespliegue'
         echo 'obtenerStreamOrigDest'
