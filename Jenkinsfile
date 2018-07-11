@@ -20,7 +20,7 @@ pipeline {
       }
       steps{
         
-        //load "$JENKINS_HOME/envVars/global.properties"
+        load "$JENKINS_HOME/envVars/global.groovy"
         echo "files: ${env.FILES}"
         echo "files: ${params.FILES}"
         echo "${SOME_TXT}"
