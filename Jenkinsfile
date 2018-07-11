@@ -22,13 +22,11 @@ pipeline {
         script{
           def props = readProperties file:"$JENKINS_HOME/envVars/global.properties";
           for (item in props){
-            echo item.key
-            echo item.value
             env[item.key] = item.value;
           }
-          env['FILES']=props['FILES']
         }
         echo "files: ${env.FILES}"
+        echo "other: ${env.OTHERVAR}"
         echo "${SOME_TXT}"
         addInfoBadge(text: "some test",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0) //retag
