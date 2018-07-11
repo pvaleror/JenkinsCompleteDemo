@@ -22,11 +22,13 @@ pipeline {
       //  sh 'echo ConfigFile $FOO $TOO $GO'
       //}
       steps{
+        load "$JENKINS_HOME/envVars/global.properties"
         //sh "echo ID_RECORD: ${params.ID_RECORD}"
         addInfoBadge(text: "some test",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0) //retag
         sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
         echo "${SOME_TXT}"
+        echo "${env.FILES}"
         echo 'identifica  rProyectos'
         echo 'ValidarDespliegue'
         echo 'obtenerStreamOrigDest'
