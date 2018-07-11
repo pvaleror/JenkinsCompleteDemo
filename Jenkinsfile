@@ -19,7 +19,7 @@ pipeline {
         SOME_TXT = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl'
       }
       steps{
-        readProperties file:"$JENKINS_HOME/envVars/global.properties";
+        load "$JENKINS_HOME/envVars/global.properties";
         echo "files: ${env.FILES}"
         echo "${SOME_TXT}"
         addInfoBadge(text: "some test",id:"info")
