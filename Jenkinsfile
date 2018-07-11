@@ -22,6 +22,8 @@ pipeline {
         script{
           def props = readProperties file:"$JENKINS_HOME/envVars/global.properties";
           for (item in props){
+            echo item.key
+            echo item.value
             env[item.key] = item.value;
           }
           env['FILES']=props['FILES']
