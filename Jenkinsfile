@@ -7,6 +7,9 @@ pipeline {
     // choices are newline separated
     choice(choices: 'Development\nTest\nProduction', description: 'What Target to Deploy?', name: 'TARGET')
   }
+  environment{
+    SOME_TXT = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl'
+  }
   stages{
     stage('prepare'){
       when {
@@ -15,15 +18,14 @@ pipeline {
         }
         beforeAgent true
       }
-      environment{
-        SOME_TXT = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl'
-      }
+      
       steps{
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         
         configFileProvider([configFile(fileId: 'GlobalVars', variable: 'GLOBAL_VARS')]) {
-          echo "ConfigFile $GLOBAL_VARS ${GLOBAL_VARS}"
+          echo "ConfigFile $GLOBAL_VARS"
+          sh "cat $GLOBAL_VARS"
         }
         
         script{
