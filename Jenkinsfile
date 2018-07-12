@@ -27,7 +27,7 @@ pipeline {
           echo "ConfigFile $GLOBAL_VARS"
           script{
             def globaProps = "$JENKINS_HOME/envVars/global.properties"
-            def shProps = sh "cat $GLOBAL_VARS"
+            def shProps = sh returnStdout: true, script: "cat $GLOBAL_VARS"
             //def props = readProperties file: globaProps, text: shProps;
             def props = readProperties text: shProps;
             for (item in props){
