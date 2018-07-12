@@ -41,7 +41,7 @@ pipeline {
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         script{
-          def shProps = sh returnStdout: true, script: "php /var/lib/jenkins/scripts/getInfo.php selectRecord ${params.ID_RECORD}" //verificarActividad
+          def shProps = sh returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}" //verificarActividad
           def props = readProperties text: shProps, replaceTokens: true;
           for (item in props){
             env[item.key] = item.value;
