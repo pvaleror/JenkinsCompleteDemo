@@ -33,7 +33,7 @@ pipeline {
         sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
 
         configFileProvider([configFile('GlobalVars'), configFile('Global2')]) {
-          sh "echo ConfigFile $FOO $TOO $GO"
+          sh "echo ConfigFile ${FOO} ${TOO} ${GO}"
         }
         echo 'identifica  rProyectos'
         echo 'ValidarDespliegue'
