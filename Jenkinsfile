@@ -9,17 +9,7 @@ pipeline {
   }
   environment{
     SOME_TXT = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl'
-    configFileProvider([configFile(fileId: 'GlobalVars', variable: 'GLOBAL_VARS')]) {
-          script{
-            def globaProps = "$JENKINS_HOME/envVars/global.properties"
-            def shProps = sh returnStdout: true, script: "cat $GLOBAL_VARS"
-            def props = readProperties file: globaProps, text: shProps;
-            for (item in props){
-              echo item.key + " => "+item.value
-              env[item.key] = item.value;
-            }
-          }
-        }
+    
   }
   stages{
     stage('prepare'){
@@ -29,17 +19,24 @@ pipeline {
         }
         beforeAgent true
       }
-      
       steps{
+        configFileProvider([
+          configFile(fileId: 'GlobalVars', variable: 'GlobalVars'),
+          configFile(fileId: 'Global2', variable: 'Global2')
+        ]){
+          script{
+            def globaProps = "$JENKINS_HOME/envVars/global.properties"
+            def shProps = sh returnStdout: true, script: "cat $GlobalVars $Global2"
+            def props = readProperties file: globaProps, text: shProps;
+            for (item in props){
+              echo item.key + " => "+item.value
+              env[item.key] = item.value;
+            }
+          }
+        }
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         
-        
-        
-        sh "set"
-        
-        echo "files: ${env.FILES}"
-        echo "${env.SOME_TXT}"
         
         sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
         echo 'identifica  rProyectos'
