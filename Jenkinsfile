@@ -96,6 +96,8 @@ pipeline {
   post{
     always{
       removeBadges(id: "info")
+    }
+    success{
       addBadge(icon: "success", text: "Falla al ejecutar el proyecto ${params.ID_RECORD}")
     }
     failure{
