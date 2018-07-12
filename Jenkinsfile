@@ -22,11 +22,8 @@ pipeline {
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         
-        configFileProvider([
-          configFile(fileId:'GlobalVars', variable: 'GlobalVars'), 
-          configFile(fileId:'Global2', variable: 'GlobalVars')
-        ]) {
-          echo "ConfigFile $GlobalVars $GlobalVars"
+        configFileProvider([configFile(fileId: 'GlobalVars', variable: 'GLOBALVARS')]) {
+          echo "ConfigFile $GLOBALVARS"
         }
         
         script{
