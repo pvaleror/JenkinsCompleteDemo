@@ -37,8 +37,16 @@ pipeline {
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         
-        sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
-        sh "set"
+        
+        script{
+          sh shProps: true, script: 'perl /var/lib/jenkins/scripts/getActInfo.pl' //verificarActividad
+          def props = readProperties text: shProps, replaceTokens: true;
+          for (item in props){
+            echo item.key + " => " + item.value
+            env[item.key] = item.value;
+          }
+        }
+          
         
         echo 'identifica  rProyectos'
         echo 'ValidarDespliegue'
