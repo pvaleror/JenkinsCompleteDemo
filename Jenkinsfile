@@ -9,7 +9,6 @@ pipeline {
   }
   environment{
     SOME_TXT = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl'
-    
   }
   stages{
     stage('prepare'){
@@ -22,14 +21,14 @@ pipeline {
       steps{
         configFileProvider([
           configFile(fileId: 'GlobalVars', variable: 'GlobalVars'),
-          configFile(fileId: 'Global2', variable: 'Global2')
+          configFile(fileId: 'Global2', variable: 'Global2'),
+          configFile(fileId: 'BPM', variable: 'BPM')
         ]){
           script{
             def globaProps = "$JENKINS_HOME/envVars/global.properties"
-            def shProps = sh returnStdout: true, script: "cat $GlobalVars $Global2"
+            def shProps = sh returnStdout: true, script: "cat $GlobalVars $Global2 $BPM"
             def props = readProperties file: globaProps, text: shProps, replaceTokens: true;
             for (item in props){
-              echo item.key + " => "+item.value
               env[item.key] = item.value;
             }
           }
@@ -37,8 +36,8 @@ pipeline {
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         
-        
         sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
+        
         echo 'identifica  rProyectos'
         echo 'ValidarDespliegue'
         echo 'obtenerStreamOrigDest'
@@ -54,6 +53,12 @@ pipeline {
       }
     }
     stage("Desplegar Oracle"){
+      when {
+        not{
+          environment name: 'BPM_ORACLE', value: ''
+        }
+        beforeAgent true
+      }
       steps{
         echo "other: ${env.OTHERVAR}"
         echo "some_txt: ${env.SOME_TXT}"
@@ -64,6 +69,12 @@ pipeline {
       }
     }
     stage("Desplegar WebLogic"){
+      when {
+        not{
+          environment name: 'BPM_WEBLOGIC', value: ''
+        }
+        beforeAgent true
+      }
       steps{
         echo "step: ${env.SOME_TXT} ${SOME_TXT}"
         sh 'echo Establecer Servidor Despliegue'
@@ -74,6 +85,12 @@ pipeline {
       }
     }
     stage("Desplegar WebSphere"){
+      when {
+        not{
+          environment name: 'BPM_WEBSPHERE', value: ''
+        }
+        beforeAgent true
+      }
       steps{
         
         sh 'echo retag'
