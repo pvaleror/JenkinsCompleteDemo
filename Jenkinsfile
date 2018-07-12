@@ -28,13 +28,8 @@ pipeline {
         echo "files: ${env.FILES}"
         echo "${env.SOME_TXT}"
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
-        addShortText(text: "${params.ID_RECORD}",border:0) //retag
-        
+        addShortText(text: "${params.ID_RECORD}",border:0) //retag        
         sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
-
-        configFileProvider([configFile('GlobalVars'), configFile('Global2')]) {
-          sh "echo ConfigFile ${FOO} ${TOO} ${GO}"
-        }
         echo 'identifica  rProyectos'
         echo 'ValidarDespliegue'
         echo 'obtenerStreamOrigDest'
