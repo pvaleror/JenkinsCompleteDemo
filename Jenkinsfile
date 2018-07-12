@@ -27,7 +27,7 @@ pipeline {
         }
         echo "files: ${env.FILES}"
         echo "${env.SOME_TXT}"
-        addInfoBadge(text: "some test",id:"info")
+        addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0) //retag
         
         sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
@@ -52,6 +52,7 @@ pipeline {
     stage("Desplegar Oracle"){
       steps{
         echo "other: ${env.OTHERVAR}"
+        echo "some_txt: ${env.SOME_TXT}"
         sh 'echo Construir Instrucciones'
         sh 'echo Desplegar Estructura'
         sh 'echo Desplegar Parametros'
@@ -70,7 +71,7 @@ pipeline {
     }
     stage("Desplegar WebSphere"){
       steps{
-        removeBadges(id: "info")
+        
         sh 'echo retag'
         sh 'echo retag'
         sh 'echo retag'
@@ -84,6 +85,14 @@ pipeline {
         sh 'echo EliminarVistaTmp'
         sh 'echo RegistrarDespliegue'
       }
+    }
+  }//stages
+  post{
+    always{
+      removeBadges(id: "info")
+    }
+    failure{
+      addErrorBadge(text: "Falla al ejecutar el proyecto ${params.ID_RECORD}")
     }
   }
 }
