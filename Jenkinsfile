@@ -29,6 +29,7 @@ pipeline {
             def shProps = sh returnStdout: true, script: "cat $GlobalVars $Global2 $BPM"
             def props = readProperties file: globaProps, text: shProps, replaceTokens: true;
             for (item in props){
+              echo item.key + " => " + item.value
               env[item.key] = item.value;
             }
           }
@@ -37,6 +38,7 @@ pipeline {
         addShortText(text: "${params.ID_RECORD}",border:0)
         
         sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
+        sh "set"
         
         echo 'identifica  rProyectos'
         echo 'ValidarDespliegue'
