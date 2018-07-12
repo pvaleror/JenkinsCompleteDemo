@@ -39,7 +39,7 @@ pipeline {
         
         
         script{
-          sh shProps: true, script: 'perl /var/lib/jenkins/scripts/getActInfo.pl' //verificarActividad
+          def shProps = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/getActInfo.pl' //verificarActividad
           def props = readProperties text: shProps, replaceTokens: true;
           for (item in props){
             echo item.key + " => " + item.value
