@@ -26,7 +26,7 @@ pipeline {
         ]){
           script{
             def globaProps = "$JENKINS_HOME/envVars/global.properties"
-            def shProps = sh returnStdout: true, script: "cat $GlobalVars $Global2 $BPM"
+            def shProps = sh returnStdout: true, script: "cat $GlobalVars; cat $Global2; cat $BPM;"
             def props = readProperties file: globaProps, text: shProps, replaceTokens: true;
             for (item in props){
               echo item.key + " => " + item.value
