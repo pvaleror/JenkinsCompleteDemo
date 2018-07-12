@@ -98,7 +98,7 @@ pipeline {
       removeBadges(id: "info")
     }
     success{
-      addBadge(icon: "success", text: "Falla al ejecutar el proyecto ${params.ID_RECORD}")
+      addBadge(icon: "success.gif", text: "Falla al ejecutar el proyecto ${params.ID_RECORD}")
     }
     failure{
       addErrorBadge(text: "Falla al ejecutar el proyecto ${params.ID_RECORD}")
