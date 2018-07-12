@@ -35,7 +35,7 @@ pipeline {
           }
         }
         
-        
+        sh "set"
         
         echo "files: ${env.FILES}"
         echo "${env.SOME_TXT}"
@@ -87,6 +87,8 @@ pipeline {
     }
     stage("Registrar Cambios"){
       steps{
+        sh "printenv"
+        sh "set"
         sh 'echo CompletarDeliver'
         sh 'echo EliminarVistaTmp'
         sh 'echo RegistrarDespliegue'
