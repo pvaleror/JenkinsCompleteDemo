@@ -28,7 +28,7 @@ pipeline {
           def globaProps = "$JENKINS_HOME/envVars/global.properties"
           def shProps = sh "cat $GLOBAL_VARS"
           script{
-            def props = readProperties file: globaProps text: shProps;
+            def props = readProperties file: globaProps, text: shProps;
             for (item in props){
               env[item.key] = item.value;
             }
@@ -96,6 +96,7 @@ pipeline {
   post{
     always{
       removeBadges(id: "info")
+      addBadge(icon: "success", text: "Falla al ejecutar el proyecto ${params.ID_RECORD}")
     }
     failure{
       addErrorBadge(text: "Falla al ejecutar el proyecto ${params.ID_RECORD}")
