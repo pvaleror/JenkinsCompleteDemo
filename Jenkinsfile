@@ -9,6 +9,17 @@ pipeline {
   }
   environment{
     SOME_TXT = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl'
+    configFileProvider([configFile(fileId: 'GlobalVars', variable: 'GLOBAL_VARS')]) {
+          script{
+            def globaProps = "$JENKINS_HOME/envVars/global.properties"
+            def shProps = sh returnStdout: true, script: "cat $GLOBAL_VARS"
+            def props = readProperties file: globaProps, text: shProps;
+            for (item in props){
+              echo item.key + " => "+item.value
+              env[item.key] = item.value;
+            }
+          }
+        }
   }
   stages{
     stage('prepare'){
@@ -23,19 +34,7 @@ pipeline {
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         
-        configFileProvider([configFile(fileId: 'GlobalVars', variable: 'GLOBAL_VARS')]) {
-          echo "ConfigFile $GLOBAL_VARS"
-          script{
-            def globaProps = "$JENKINS_HOME/envVars/global.properties"
-            def shProps = sh returnStdout: true, script: "cat $GLOBAL_VARS"
-            //def props = readProperties file: globaProps, text: shProps;
-            def props = readProperties text: shProps;
-            for (item in props){
-              echo item.key + " => "+item.value
-              env[item.key] = item.value;
-            }
-          }
-        }
+        
         
         sh "set"
         
