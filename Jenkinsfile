@@ -30,6 +30,7 @@ pipeline {
             def shProps = sh "cat $GLOBAL_VARS"
             def props = readProperties file: globaProps, text: shProps;
             for (item in props){
+              echo item.key + " => "+item.value
               env[item.key] = item.value;
             }
           }
