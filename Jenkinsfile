@@ -8,7 +8,7 @@ pipeline {
     choice(choices: 'Development\nTest\nProduction', description: 'What Target to Deploy?', name: 'TARGET')
   }
   environment{
-    SOME_TXT = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl'
+    //SOME_TXT = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl'
   }
   stages{
     stage('prepare'){
@@ -29,26 +29,19 @@ pipeline {
             def shProps = sh returnStdout: true, script: "cat $GlobalVars;echo;cat $Global2;echo;cat $BPM;"
             def props = readProperties file: globaProps, text: shProps, replaceTokens: true;
             for (item in props){
-              echo item.key + " => " + item.value
               env[item.key] = item.value;
             }
           }
         }
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
-        
-        
         script{
-          def shProps = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/getActInfo.pl' //verificarActividad
+          def shProps = sh returnStdout: true, script: "php /var/lib/jenkins/scripts/getInfo.php selectRecord ${params.ID_RECORD}" //verificarActividad
           def props = readProperties text: shProps, replaceTokens: true;
           for (item in props){
-            echo item.key + " => " + item.value
             env[item.key] = item.value;
           }
         }
-          
-        
-        echo 'identifica  rProyectos'
         echo 'ValidarDespliegue'
         echo 'obtenerStreamOrigDest'
         echo 'IdentificarHerramientas'
@@ -71,7 +64,6 @@ pipeline {
       }
       steps{
         echo "other: ${env.OTHERVAR}"
-        echo "some_txt: ${env.SOME_TXT}"
         sh 'echo Construir Instrucciones'
         sh 'echo Desplegar Estructura'
         sh 'echo Desplegar Parametros'
@@ -86,7 +78,6 @@ pipeline {
         beforeAgent true
       }
       steps{
-        echo "step: ${env.SOME_TXT} ${SOME_TXT}"
         sh 'echo Establecer Servidor Despliegue'
         sh 'echo -- Crear Carpeta Remota'
         sh 'echo Copiar archivos a server'
