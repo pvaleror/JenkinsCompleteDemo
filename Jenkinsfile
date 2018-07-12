@@ -19,16 +19,26 @@ pipeline {
         SOME_TXT = sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl'
       }
       steps{
+        addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
+        addShortText(text: "${params.ID_RECORD}",border:0)
+        
+        configFileProvider([
+          configFile(fileId:'GlobalVars', variable: 'GlobalVars'), 
+          configFile(fileId:'Global2', variable: 'GlobalVars')
+        ]) {
+          echo "ConfigFile $GlobalVars $GlobalVars"
+        }
+        
         script{
           def props = readProperties file:"$JENKINS_HOME/envVars/global.properties";
           for (item in props){
             env[item.key] = item.value;
           }
         }
+        
         echo "files: ${env.FILES}"
         echo "${env.SOME_TXT}"
-        addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
-        addShortText(text: "${params.ID_RECORD}",border:0) //retag        
+        
         sh returnStdout: true, script: 'perl /var/lib/jenkins/scripts/verificarActividad.pl' //verificarActividad
         echo 'identifica  rProyectos'
         echo 'ValidarDespliegue'
