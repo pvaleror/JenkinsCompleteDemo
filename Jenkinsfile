@@ -20,7 +20,7 @@ pipeline {
       //}
       steps{
         script{
-          if(${params.ID_RECORD} == "00000"){
+          if(params.ID_RECORD == "00000"){
             error("No se ha especificado el id del requerimiento")
           }
         }
