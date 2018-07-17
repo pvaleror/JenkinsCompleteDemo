@@ -42,8 +42,7 @@ pipeline {
         addShortText(text: "${params.ID_RECORD}",border:0)
         script{
           def shProps = sh(returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}").trim() //verificarActividad
-          def hasError = (shProps =~ /ERROR/)
-          if(hasError) {
+          if(shProps =~ /ERROR/m) {
             ansiColor('xterm'){
               echo "\u001B[31m" + shProps + "\u001B[0m "
             };
