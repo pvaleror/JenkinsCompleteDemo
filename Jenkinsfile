@@ -41,11 +41,11 @@ pipeline {
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         script{
-          def shProps = sh returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}" //verificarActividad
+          def shProps = sh(returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}").trim() //verificarActividad
           echo shProps
           if(shProps.matches(/ERROR:\s+(.*)/)) {
             ansiColor('xterm'){
-              echo "\u001B[31mERROR:\u001B[0m $1"
+              echo "\u001B[31m" + shProps + "\u001B[0m "
             };
           }
           def props = readProperties text: shProps, replaceTokens: true;
