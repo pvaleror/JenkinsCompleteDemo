@@ -42,10 +42,17 @@ pipeline {
         addShortText(text: "${params.ID_RECORD}",border:0)
         script{
           def shProps = sh returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}" //verificarActividad
+          if(shProps) {
+            ansiColor('xterm'){
+              echo "\u001B[31mI'm Red\u001B[0m Now not"
+            };
+          }
           def props = readProperties text: shProps, replaceTokens: true;
           for (item in props){
             env[item.key] = item.value;
           }
+          
+          
         }
         echo 'ValidarDespliegue'
         echo 'obtenerStreamOrigDest'
