@@ -7,6 +7,9 @@ pipeline {
     // choices are newline separated
     choice(choices: 'Development\nTest\nProduction', description: 'What Target to Deploy?', name: 'TARGET')
   }
+  options {
+    ansiColor('xterm')
+  }
   environment{
     SOME_TXT = "static text"
   }
@@ -56,7 +59,7 @@ pipeline {
           
           
         }
-        
+        echo "\u001B[31mSome text\u001B[0m"
         echo 'ValidarDespliegue'
         echo 'obtenerStreamOrigDest'
         echo 'IdentificarHerramientas'
