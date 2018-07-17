@@ -48,7 +48,7 @@ pipeline {
           if(shProps =~ /ERROR/) {
             ansiColor('xterm'){
               echo "\u001B[31m" + shProps + "\u001B[0m"
-              error("\u001B[31m" + shProps + "\u001B[0m")
+              // error "\u001B[31m" + shProps + "\u001B[0m"
             };
           }
           def props = readProperties text: shProps, replaceTokens: true;
@@ -60,6 +60,8 @@ pipeline {
           
           
         }
+        echo "\u001B[31m" + shProps + "\u001B[0m"
+        
         echo "\u001B[31mSome text\u001B[0m"
         echo 'ValidarDespliegue'
         echo 'obtenerStreamOrigDest'
