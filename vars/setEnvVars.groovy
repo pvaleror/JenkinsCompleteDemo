@@ -1,4 +1,4 @@
-def call(String[] configFiles) {
+def call(Member[] configFiles) {
   for(int i=0; i<=configFiles.size(); i++){
     echo "CNF: "+configFiles[i]
   }
