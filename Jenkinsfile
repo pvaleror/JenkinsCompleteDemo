@@ -33,9 +33,8 @@ pipeline {
         //Console(type: 'success', msg: 'Solo estamos probando\nMultiline\nOther more line')
         
         setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
-        if(env.STATE){
-          echo "STATE: "+env.STATE
-          
+        if{
+          echo "STATE: "+env.STAT
         }
         echo 'ValidarDespliegue'
         echo 'obtenerStreamOrigDest'
