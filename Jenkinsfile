@@ -19,13 +19,12 @@ pipeline {
       steps{
         script{
           if(params.ID_RECORD == "00000"){
-            ItError("No se ha especificado el id del requerimiento")
+            Console(type: 'error', msg: "No se ha especificado el id del requerimiento")
           }
         }
         setEnvVars(configFiles:['GlobalVars', 'Global2', 'BPM'])
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
-        
         
         //Console(type: 'log', msg: 'Solo estamos probando')
         //Console(type: 'error', msg: 'Solo estamos probando')
@@ -34,10 +33,10 @@ pipeline {
         //Console(type: 'success', msg: 'Solo estamos probando\nMultiline\nOther more line')
         
         setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
-        
-        echo "\u001B[31mOther Text\u001B[0m"
-        
-        echo "\u001B[31mSome text\u001B[0m"
+        if(env.STATE){
+          echo "STATE: "+env.STATE
+          
+        }
         echo 'ValidarDespliegue'
         echo 'obtenerStreamOrigDest'
         echo 'IdentificarHerramientas'
