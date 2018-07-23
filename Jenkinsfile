@@ -29,7 +29,7 @@ pipeline {
           }
         }
         setEnvVars(['GlobalVars', 'Global2', 'BPM'])
-        
+        sh 'set'
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         
