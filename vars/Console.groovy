@@ -4,7 +4,6 @@ def itLog(msg) {
 
 def itError(msg) {
   spit(msg, '37;41m')
-  currentBuild.result = 'FAILURE'
   error(msg.replace("ERROR: ",""))
 }
 
