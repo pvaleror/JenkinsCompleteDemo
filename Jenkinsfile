@@ -27,6 +27,10 @@ pipeline {
         addShortText(text: "${params.ID_RECORD}",border:0)
         
         
+        Console(type: 'log', msg: 'Solo estamos probando')
+        Console(type: 'error', msg: 'Solo estamos probando')
+        Console(type: 'warning', msg: 'Solo estamos probando')
+        Console(type: 'success', msg: 'Solo estamos probando')
         Console(type: 'warning', msg: 'Solo estamos probando')
         script{
           def shProps = sh(returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}").trim() //verificarActividad
@@ -36,7 +40,7 @@ pipeline {
           def props = readProperties text: shProps, replaceTokens: true;
           for (item in props){
             env[item.key] = item.value
-            Console(type: 'debug', msg: item.key + '=>' + item.value)
+            Console(type: 'log', msg: item.key + '=>' + item.value)
           }
         }
         echo "\u001B[31mOther Text\u001B[0m"

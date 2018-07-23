@@ -1,20 +1,20 @@
 def log(msg) {
-  spit(msg, '34m')
+  spit(msg, '37;44m;')
 }
 
 def error(msg) {
-  spit(msg, '31m')
+  spit(msg, '37;41m')
   currentBuild.result = 'ABORTED'
-  error(msg.replace("ERROR: ",""))
+  //error(msg.replace("ERROR: ",""))
 }
 
 def warning(msg){
   currentBuild.result = 'UNSTABLE'
-  spit(msg, '33m')
+  spit(msg, '37;43m')
 }
 
 def success(msg){
-  spit(msg, '32m')
+  spit(msg, '37;42m')
 }
 
 def spit(msg, color){
@@ -23,7 +23,15 @@ def spit(msg, color){
 
 def call(Map conf) {
   switch(conf.type){
-    case 'debug':
+    case 'log':
+      log(conf.msg)
+      break;
+    case 'error':
+      warning(conf.msg)
+      break;
+    case 'warning':
+      warning(conf.msg)
+      break;
     case 'success':
       success(conf.msg)
       break;
