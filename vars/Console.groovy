@@ -25,7 +25,9 @@ def call(Map conf) {
     case 'debug':
     case 'success':
       //success(conf.msg)
-      echo '\033[32m' + conf.msg + '\033[0m'
+      ansiColor('xterm') {
+        echo '\033[32m' + conf.msg + '\033[0m'
+      }
       break;
     default:
       success(conf.msg)
