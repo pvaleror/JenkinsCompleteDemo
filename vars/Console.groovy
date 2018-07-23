@@ -15,19 +15,14 @@ def success(msg){
 }
 
 def spit(msg, color){
-  ansiColor('xterm') {
-    echo color + msg + '\033[0m'
-  }
+  echo color + msg + '\033[0m'
 }
 
 def call(Map conf) {
   switch(conf.type){
     case 'debug':
     case 'success':
-      //success(conf.msg)
-      ansiColor('xterm') {
-        echo '\033[32m' + conf.msg + '\033[0m'
-      }
+      success(conf.msg)
       break;
     default:
       success(conf.msg)
