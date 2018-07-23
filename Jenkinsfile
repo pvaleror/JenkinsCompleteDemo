@@ -28,25 +28,14 @@ pipeline {
             error("No se ha especificado el id del requerimiento")
           }
         }
-        configFileProvider([
-          configFile(fileId: 'GlobalVars', variable: 'GlobalVars'),
-          configFile(fileId: 'Global2', variable: 'Global2'),
-          configFile(fileId: 'BPM', variable: 'BPM')
-        ]){
-          script{
-            def globaProps = "$JENKINS_HOME/envVars/global.properties"
-            def shProps = sh(returnStdout: true, script: "cat $GlobalVars;echo;cat $Global2;echo;cat $BPM;").trim()
-            def props = readProperties file: globaProps, text: shProps, replaceTokens: true;
-            for (item in props){
-              env[item.key] = item.value;
-            }
-          }
-        }
+        setEnvVars(['GlobalVars', 'Global2', 'BPM'])
+        
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         
         script{
           def shProps = sh(returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}").trim() //verificarActividad
+          
           if(shProps =~ /ERROR/) {
             ansiColor('xterm'){
               
@@ -59,11 +48,7 @@ pipeline {
           for (item in props){
             env[item.key] = item.value;
           }
-          
         }
-        
-        
-        error(shProps)
         echo "\u001B[31mOther Text\u001B[0m"
         
         echo "\u001B[31mSome text\u001B[0m"
