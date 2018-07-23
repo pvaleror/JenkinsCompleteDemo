@@ -1,7 +1,9 @@
-@Library('CommonFuncs') _
 pipeline {
   agent {
     label 'master'
+  }
+  libraries {
+    lib('CommonFuncs')
   }
   parameters {
     string(defaultValue: "00000", description: 'What Record ID to deploy?', name: 'ID_RECORD')
