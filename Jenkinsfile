@@ -26,9 +26,10 @@ pipeline {
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         
-        currentBuild.result = 'FAILURE'
+        
         
         script{
+          currentBuild.result = 'FAILURE'
           def shProps = sh(returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}").trim() //verificarActividad
           if(shProps =~ /ERROR/) {
             ItError(shProps)
