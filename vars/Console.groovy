@@ -4,7 +4,7 @@ def log(msg) {
 
 def error(msg) {
   spit(msg, '37;41m')
-  currentBuild.result = 'ABORTED'
+  currentBuild.result = 'FAILURE'
   //error(msg.replace("ERROR: ",""))
 }
 
