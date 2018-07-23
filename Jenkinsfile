@@ -31,17 +31,9 @@ pipeline {
         Console(type: 'error', msg: 'Solo estamos probando')
         Console(type: 'warning', msg: 'Solo estamos probando')
         Console(type: 'success', msg: 'Solo estamos probando')
-        script{
-          def shProps = sh(returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}").trim() //verificarActividad
-          if(shProps =~ /ERROR/) {
-            ItError(shProps)
-          }
-          def props = readProperties text: shProps, replaceTokens: true;
-          for (item in props){
-            //env[item.key] = item.value
-            Console(type: 'log', msg: item.key + '=>' + item.value)
-          }
-        }
+        
+        setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
+        
         echo "\u001B[31mOther Text\u001B[0m"
         
         echo "\u001B[31mSome text\u001B[0m"
