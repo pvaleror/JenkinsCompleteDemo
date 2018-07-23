@@ -1,5 +1,6 @@
 def call(configFiles) {
-  echo configFiles.size()
+  def size = configFiles.size()
+  echo size
   for(int i=0; i<=configFiles.size(); i++){
     echo "CNF: "+configFiles[i]
   }
