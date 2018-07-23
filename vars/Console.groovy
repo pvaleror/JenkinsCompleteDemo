@@ -1,19 +1,19 @@
-def log(msg) {
+def itLog(msg) {
   spit(msg, '37;44m')
 }
 
-def error(msg) {
+def itError(msg) {
   spit(msg, '37;41m')
   currentBuild.result = 'FAILURE'
-  //error(msg.replace("ERROR: ",""))
+  error(msg.replace("ERROR: ",""))
 }
 
-def warning(msg){
+def itWarning(msg){
   currentBuild.result = 'UNSTABLE'
   spit(msg, '37;43m')
 }
 
-def success(msg){
+def itSuccess(msg){
   spit(msg, '37;42m')
 }
 
@@ -24,16 +24,16 @@ def spit(msg, color){
 def call(Map conf) {
   switch(conf.type){
     case 'log':
-      log(conf.msg)
+      itLog(conf.msg)
       break;
     case 'error':
-      error(conf.msg)
+      itError(conf.msg)
       break;
     case 'warning':
-      warning(conf.msg)
+      itWarning(conf.msg)
       break;
     case 'success':
-      success(conf.msg)
+      itSuccess(conf.msg)
       break;
     default:
       success(conf.msg)
