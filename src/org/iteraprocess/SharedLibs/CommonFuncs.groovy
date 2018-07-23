@@ -1,4 +1,4 @@
-package src.org.iteraprocess.SharedLibs;
+package org.iteraprocess.SharedLibs;
 
 class CommonFuncs implements Serializable{
   def steps
