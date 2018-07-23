@@ -35,7 +35,6 @@ pipeline {
           for (item in props){
             env[item.key] = item.value
             Console(type: 'debug', msg: item.key + '=>' + item.value)
-            Console.debug(item.key + '=>' + item.value)
           }
         }
         echo "\u001B[31mOther Text\u001B[0m"
