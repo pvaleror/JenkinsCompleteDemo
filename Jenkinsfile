@@ -33,7 +33,7 @@ pipeline {
         //Console(type: 'success', msg: 'Solo estamos probando\nMultiline\nOther more line')
         
         setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
-        if{
+        ItIf{
           echo "STATE: "+env.STAT
         }
         echo 'ValidarDespliegue'
