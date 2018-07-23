@@ -53,7 +53,7 @@ pipeline {
               echo "\u001B[31m" + shProps + "\u001B[0m"
               //error shProps
             };
-            CommonFuncs.Error("asdfdffe")
+            ItError("asdfdffe")
           }
           def props = readProperties text: shProps, replaceTokens: true;
           for (item in props){
