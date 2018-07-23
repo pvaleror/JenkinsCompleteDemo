@@ -31,6 +31,7 @@ pipeline {
         Console(type: 'error', msg: 'Solo estamos probando')
         Console(type: 'warning', msg: 'Solo estamos probando')
         Console(type: 'success', msg: 'Solo estamos probando')
+        Console(type: 'success', msg: 'Solo estamos probando\nMultiline\nOther more line')
         
         setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
         

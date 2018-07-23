@@ -27,7 +27,7 @@ def call(Map conf) {
       log(conf.msg)
       break;
     case 'error':
-      warning(conf.msg)
+      error(conf.msg)
       break;
     case 'warning':
       warning(conf.msg)
