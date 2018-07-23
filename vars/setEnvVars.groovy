@@ -1,4 +1,3 @@
-@Library("CommonFuncs")
 def call(configFiles) {
   for(int i=0; i < configFiles.size(); i++){
     def cnfName = configFiles[i]
@@ -9,7 +8,6 @@ def call(configFiles) {
         echo "\n\nvariables del archivo "+cnfName+":"
         for (item in props){
           env[item.key] = item.value;
-          Console(type: 'debug', msg: item.key + ' => ' + item.value)
         }
       }
     }
