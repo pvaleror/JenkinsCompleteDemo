@@ -1,3 +1,4 @@
+@Library('CommonFuncs') _
 pipeline {
   agent {
     label 'master'
@@ -43,12 +44,14 @@ pipeline {
         }
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
+        
         script{
           def shProps = sh(returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}").trim() //verificarActividad
           if(shProps =~ /ERROR/) {
             ansiColor('xterm'){
+              Error shProps
               echo "\u001B[31m" + shProps + "\u001B[0m"
-             error "\u001B[31m" + shProps + "\u001B[0m"
+              error shProps
             };
           }
           def props = readProperties text: shProps, replaceTokens: true;
