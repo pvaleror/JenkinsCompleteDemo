@@ -29,7 +29,7 @@ pipeline {
         
         
         script{
-          currentBuild.result = 'FAILURE'
+//          currentBuild.result = 'FAILURE'
           def shProps = sh(returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}").trim() //verificarActividad
           if(shProps =~ /ERROR/) {
             ItError(shProps)
