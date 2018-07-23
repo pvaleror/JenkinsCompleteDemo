@@ -4,6 +4,7 @@ def log(msg) {
 
 def error(msg) {
   spit(msg, '31m')
+  error(msg.replace("ERROR: ",""))
 }
 
 def warning(msg){
