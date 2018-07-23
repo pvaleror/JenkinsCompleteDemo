@@ -57,10 +57,10 @@ pipeline {
           def props = readProperties text: shProps, replaceTokens: true;
           for (item in props){
             env[item.key] = item.value;
-          }   
+          }
         }
+        Error(shProps)
         
-        CommonFuncs.Error(shProps)
         error(shProps)
         echo "\u001B[31mOther Text\u001B[0m"
         
