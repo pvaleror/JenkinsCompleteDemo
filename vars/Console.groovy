@@ -4,10 +4,12 @@ def log(msg) {
 
 def error(msg) {
   spit(msg, '31m')
+  currentBuild.result = 'ABORTED'
   error(msg.replace("ERROR: ",""))
 }
 
 def warning(msg){
+  currentBuild.result = 'UNSTABLE'
   spit(msg, '33m')
 }
 

@@ -27,9 +27,8 @@ pipeline {
         addShortText(text: "${params.ID_RECORD}",border:0)
         
         
-        
+        Console(type: 'warning', msg: 'Solo estamos probando')
         script{
-//          currentBuild.result = 'FAILURE'
           def shProps = sh(returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}").trim() //verificarActividad
           if(shProps =~ /ERROR/) {
             ItError(shProps)
