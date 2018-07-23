@@ -1,9 +1,9 @@
 def call(config, body) {
-  body()
   if(Eval.me(config)){
     body()
+    echo "ENTRA"
   }else{
-    echo "NO VA";
+    echo "NO VA"
   }
   
 }
