@@ -14,7 +14,7 @@ def success(msg){
   spit(msg, '\033[32m')
 }
 
-private def spit(msg, color){
+def spit(msg, color){
   ansiColor('xterm') {
     steps.echo color + msg + '\033[0m'
   }
