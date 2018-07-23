@@ -27,11 +27,11 @@ pipeline {
         addShortText(text: "${params.ID_RECORD}",border:0)
         
         
-        Console(type: 'log', msg: 'Solo estamos probando')
-        Console(type: 'error', msg: 'Solo estamos probando')
-        Console(type: 'warning', msg: 'Solo estamos probando')
-        Console(type: 'success', msg: 'Solo estamos probando')
-        Console(type: 'success', msg: 'Solo estamos probando\nMultiline\nOther more line')
+        //Console(type: 'log', msg: 'Solo estamos probando')
+        //Console(type: 'error', msg: 'Solo estamos probando')
+        //Console(type: 'warning', msg: 'Solo estamos probando')
+        //Console(type: 'success', msg: 'Solo estamos probando')
+        //Console(type: 'success', msg: 'Solo estamos probando\nMultiline\nOther more line')
         
         setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
         

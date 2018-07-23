@@ -14,7 +14,7 @@ def call(Map config) {
   if(config.script){
     def shProps = sh(returnStdout: true, script: config.script).trim()
     if(shProps =~ /ERROR/) {
-      ItError(shProps)
+      Console(type: 'error', msg: shProps)
     }
     def props = readProperties text: shProps, replaceTokens: true;
     for (item in props){
