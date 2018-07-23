@@ -16,33 +16,20 @@ pipeline {
   }
   stages{
     stage('prepare'){
-      //when {
-      //  not{
-      //    environment name: 'ID_RECORD', value: '00000'
-      //  }
-      //  beforeAgent true
-      //}
       steps{
         script{
           if(params.ID_RECORD == "00000"){
-            error("No se ha especificado el id del requerimiento")
+            ItError("No se ha especificado el id del requerimiento")
           }
         }
         setEnvVars(['GlobalVars', 'Global2', 'BPM'])
-        sh 'set'
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         
         script{
           def shProps = sh(returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}").trim() //verificarActividad
-          
           if(shProps =~ /ERROR/) {
-            ansiColor('xterm'){
-              
-              echo "\u001B[31m" + shProps + "\u001B[0m"
-              //error shProps
-            };
-            ItError("asdfdffe")
+            ItError(shProps)
           }
           def props = readProperties text: shProps, replaceTokens: true;
           for (item in props){
@@ -114,7 +101,6 @@ pipeline {
     stage("Registrar Cambios"){
       steps{
         sh "printenv"
-        sh "set"
         sh 'echo CompletarDeliver'
         sh 'echo EliminarVistaTmp'
         sh 'echo RegistrarDespliegue'
