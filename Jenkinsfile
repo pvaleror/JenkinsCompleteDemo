@@ -49,10 +49,11 @@ pipeline {
           def shProps = sh(returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}").trim() //verificarActividad
           if(shProps =~ /ERROR/) {
             ansiColor('xterm'){
-              CommonFuncs.Error(shProps)
+              
               echo "\u001B[31m" + shProps + "\u001B[0m"
               //error shProps
             };
+            CommonFuncs.Error(shProps)
           }
           def props = readProperties text: shProps, replaceTokens: true;
           for (item in props){
