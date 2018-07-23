@@ -1,6 +1,6 @@
 def call(config, body) {
   body()
-  if(Eval.me(config) == "200"){
+  if(Eval.me(config)){
     body()
   }else{
     echo "NO VA";
