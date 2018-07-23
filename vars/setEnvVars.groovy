@@ -1,4 +1,5 @@
-def call(String... configFiles) {
+def call(configFiles) {
+  echo configFiles.size()
   for(int i=0; i<=configFiles.size(); i++){
     echo "CNF: "+configFiles[i]
   }
