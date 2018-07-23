@@ -31,7 +31,6 @@ pipeline {
         Console(type: 'error', msg: 'Solo estamos probando')
         Console(type: 'warning', msg: 'Solo estamos probando')
         Console(type: 'success', msg: 'Solo estamos probando')
-        Console(type: 'warning', msg: 'Solo estamos probando')
         script{
           def shProps = sh(returnStdout: true, script: "php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}").trim() //verificarActividad
           if(shProps =~ /ERROR/) {
