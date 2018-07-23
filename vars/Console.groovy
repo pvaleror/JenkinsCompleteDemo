@@ -1,5 +1,5 @@
 def log(msg) {
-  spit(msg, '37;44m;')
+  spit(msg, '37;44m')
 }
 
 def error(msg) {
@@ -18,7 +18,7 @@ def success(msg){
 }
 
 def spit(msg, color){
-  echo '\033[1;' + color + msg + '\033[0m'
+  echo '\033[1;' + color + '  ' + msg + '  \033[0m'
 }
 
 def call(Map conf) {
