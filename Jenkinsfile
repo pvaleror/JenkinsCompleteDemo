@@ -22,7 +22,7 @@ pipeline {
             ItError("No se ha especificado el id del requerimiento")
           }
         }
-        setEnvVars(['GlobalVars', 'Global2', 'BPM'])
+        setEnvVars(configFiles:['GlobalVars', 'Global2', 'BPM'])
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
         
@@ -38,7 +38,7 @@ pipeline {
           }
           def props = readProperties text: shProps, replaceTokens: true;
           for (item in props){
-            env[item.key] = item.value
+            //env[item.key] = item.value
             Console(type: 'log', msg: item.key + '=>' + item.value)
           }
         }
