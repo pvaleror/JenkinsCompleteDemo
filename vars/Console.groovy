@@ -24,7 +24,8 @@ def call(Map conf) {
   switch(conf.type){
     case 'debug':
     case 'success':
-      success(conf.msg)
+      //success(conf.msg)
+      echo '\033[32m' + conf.msg + '\033[0m'
       break;
     default:
       success(conf.msg)
