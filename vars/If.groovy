@@ -1,8 +1,8 @@
 def call(config, body) {
-  if(config){
-    body()
+  if(config.cond){
+    config.then()
   }else{
-    echo "NO VA"
+    config.else()
   }
   
 }
