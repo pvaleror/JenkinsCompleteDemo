@@ -1,5 +1,5 @@
 def call(Map config, body) {
-  echo config
+  config.each{ k, v -> println "${k}:${v}" }
   if(Eval.me(config)){
     echo "ENTRA"
     body()
