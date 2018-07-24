@@ -1,7 +1,9 @@
-def call(config, body) {
+def call(Map config, body) {
+  echo config
   if(Eval.me(config)){
-    body()
     echo "ENTRA"
+    body()
+    
   }else{
     echo "NO VA"
   }
