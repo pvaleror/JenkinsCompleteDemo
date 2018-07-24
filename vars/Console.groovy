@@ -17,7 +17,8 @@ def itSuccess(msg){
 }
 
 def spit(msg, color){
-  echo '\033[1;' + color + ' ' + msg + ' \033[0m'
+  lines = msg.split('\n')
+  lines.map(m, echo '\033[1;' + color + ' ' + m + ' \033[0m')
 }
 
 def call(Map conf) {
