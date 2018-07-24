@@ -34,15 +34,16 @@ pipeline {
         
         setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
         script{
+          def valState
           switch(env.TARGET){
             case 'Development':
-              def valState = env.DEV_STATES
+              valState = env.DEV_STATES
               break
             case 'Test':
-              def valState = env.TEST_STATES
+              valState = env.TEST_STATES
               break
             case 'Production':
-              def valState = env.PROD_STATES
+              valState = env.PROD_STATES
               break
           }
           if(valState =~ /${env.STATE}/ ){
