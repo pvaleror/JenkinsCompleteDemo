@@ -3,6 +3,5 @@ def call(config, body) {
     config.then()
   }else{
     config.else()
-  }
-  
+  }  
 }
