@@ -34,10 +34,21 @@ pipeline {
         
         setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
         script{
-          if(env.STATE == "200"){
+          switch(env.TARGET){
+            case 'Development'
+              def valState = env.DEV_STATES
+              break
+            case 'Test'
+              def valState = env.TEST_STATES
+              break
+            case 'Production'
+              def valState = env.PROD_STATES
+              break
+          }
+          if(valState =~ /${env.STATE}/ ){
             Console(type: 'success', msg: 'Estado "' + env.STATE + '" válido para despligue')
           }else{
-            Console(type: 'error', msg: 'Estado "' + env.STATE + '" no válido para despligue')
+            Console(type: 'error', msg: 'Estado "' + env.STATE + '" no válido para despligue\nValores permitidos:' + valState)
           }          
         }
         echo 'ValidarDespliegue'
