@@ -33,11 +33,9 @@ pipeline {
         //Console(type: 'success', msg: 'Solo estamos probando\nMultiline\nOther more line')
         
         setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
-        ItIf(cond: env.STATE == "200",then:{
+        ItIf(cond: env.STATE == "200"){
           Console(type: 'success', msg: 'Estado válido para despligue')
-        }, else:{
-          Console(type: 'error', msg: 'El estado no es válido para despligue')
-        })
+        }
         echo 'ValidarDespliegue'
         echo 'obtenerStreamOrigDest'
         echo 'IdentificarHerramientas'
