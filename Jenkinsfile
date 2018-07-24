@@ -49,7 +49,7 @@ pipeline {
           if(valState =~ /${env.STATE}/ ){
             Console(type: 'success', msg: 'Estado "' + env.STATE + '" válido para despligue')
           }else{
-            Console(type: 'error', msg: 'Estado "' + env.STATE + '" no válido para despligue\nValores permitidos:' + valState)
+            Console(type: 'error', msg: 'Estado "' + env.STATE + '" no válido para el ambiente\nEstados esperados:' + valState)
           }          
         }
         echo 'ValidarDespliegue'
