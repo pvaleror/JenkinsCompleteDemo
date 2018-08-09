@@ -24,7 +24,7 @@ pipeline {
           }
         }
         
-        sh(returnStdout: true, script: 'git config --get gitflow.prefix.feature').trim()
+        sh returnStdout: true, script: 'git config --get gitflow.prefix.feature'
         
         
         createSummary icon: 'info', id: 'ok'
