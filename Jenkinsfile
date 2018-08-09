@@ -24,7 +24,7 @@ pipeline {
           }
         }
         
-        sh 'git config --get gitflow.prefix.feature'
+        sh 'git config --list'
         
         
         createSummary icon: 'info', id: 'ok'
