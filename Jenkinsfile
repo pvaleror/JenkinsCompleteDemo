@@ -24,9 +24,6 @@ pipeline {
           }
         }
         
-        sh "git config --get gitflow.prefix.feature"
-        Console(type: 'error', msg: 'Solo estamos probando')
-        
         createSummary icon: 'info', id: 'ok'
         setEnvVars(configFiles:['GlobalVars', 'Global2', 'BPM'])
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
