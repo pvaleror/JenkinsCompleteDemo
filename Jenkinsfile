@@ -23,6 +23,10 @@ pipeline {
             Console(type: 'error', msg: "No se ha especificado el id del requerimiento")
           }
         }
+        
+        sh(returnStdout: true, script: 'git config --get gitflow.prefix.feature').trim()
+        
+        
         createSummary icon: 'info', id: 'ok'
         setEnvVars(configFiles:['GlobalVars', 'Global2', 'BPM'])
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
