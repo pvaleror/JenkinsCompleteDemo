@@ -9,8 +9,6 @@ def call(Map config){
     def sourceBranch = sh(returnStdout: true, script: 'git config --get gitflow.prefix.release').trim() + params.ID_RECORD
     def targetBranch = sh(returnStdout: true, script: 'git config --get gitflow.branch.master').trim()
   }
-  echo sourceBranch
-  echo targetBranch
-  env[sourceBranch] = sourceBranch
-  env[targetBranch] = targetBranch
+  env['sourceBranch'] = sourceBranch
+  env['targetBranch'] = targetBranch
 }
