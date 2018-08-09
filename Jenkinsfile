@@ -35,27 +35,7 @@ pipeline {
         //Console(type: 'success', msg: 'Solo estamos probando\nMultiline\nOther more line')
         
         setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
-        script{
-          def valState
-          switch(env.TARGET){
-            case 'Development':
-              valState = env.DEV_STATES
-              break
-            case 'Test':
-              valState = env.TEST_STATES
-              break
-            case 'Production':
-              valState = env.PROD_STATES
-              break
-          }
-          if(valState =~ /${env.STATE}/ ){
-            Console(type: 'success', msg: 'Estado "' + env.STATE + '" válido para despligue')
-          }else{
-            Console(type: 'error', msg: 'Estado "' + env.STATE + '" no válido para el ambiente\nEstados esperados:' + valState)
-          }          
-        }
-        echo 'ValidarDespliegue'
-        echo 'obtenerStreamOrigDest'
+        setBranches()
         echo 'IdentificarHerramientas'
         echo 'crearVista'
         echo 'AislarCarpeta'
