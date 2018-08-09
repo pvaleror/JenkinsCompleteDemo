@@ -13,7 +13,8 @@ pipeline {
   }
   environment{
     SOME_TXT = "static text"
-  } 
+    DB_MYSQL = credentials('DB_MYSQL') 
+  }
   stages{
     stage('prepare'){
       steps{
@@ -22,6 +23,7 @@ pipeline {
             Console(type: 'error', msg: "No se ha especificado el id del requerimiento")
           }
         }
+        createSummary icon: 'info', id: 'ok'
         setEnvVars(configFiles:['GlobalVars', 'Global2', 'BPM'])
         addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         addShortText(text: "${params.ID_RECORD}",border:0)
