@@ -32,7 +32,8 @@ pipeline {
         Console(type: 'log', msg: 'Solo estamos probando')
         echo env.TECH
         script{
-          env.SRVS.each{
+          def srvs = Eval.me(env.SRVS)
+          srvs.each{
             srv -> 
               echo "somo ${srv}"
           }
