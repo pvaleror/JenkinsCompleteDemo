@@ -30,7 +30,12 @@ def call(Map conf) {
       println PROPS
       println PROPS.T_T4C_WS
       println PROPS["T_T4C_WS"]
-      println PROPS[T_T4C_WS]
+      println PROPS.T_T4C_WS.TECH
+      println PROPS["T_T4C_WS"].TECH
+      println PROPS["T_T4C_WS"]["TECH"]
+      println PROPS.T_T4C_WS["TECH"]
+      
+
       break;
     case 'error':
       itError(conf.msg)
