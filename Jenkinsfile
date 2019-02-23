@@ -113,15 +113,13 @@ pipeline {
   post{
     always{
       //removeBadges(id: "info")
-      echo "always"
+      sh "printenv"
     }
-    success{
-      //addBadge(icon: "completed.gif", text: "Finalizado con exito")
-      echo "success"
-    }
-    failure{
-      //addErrorBadge(text: "Falla al ejecutar el proyecto ${params.ID_RECORD}")
-      echo "failure"
-    }
+    //success{
+    //  //addBadge(icon: "completed.gif", text: "Finalizado con exito")
+    //}
+    //failure{
+    //  //addErrorBadge(text: "Falla al ejecutar el proyecto ${params.ID_RECORD}")
+    //}
   }
 }
