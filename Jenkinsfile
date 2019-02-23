@@ -14,7 +14,7 @@ pipeline {
   environment{
     SOME_TXT = "static text"
     //DB_MYSQL = credentials('DB_MYSQL') 
-    PROPS = readYaml file:'Config/some'
+    PROPS = readYaml file:'Config/some.yml'
   }
   stages{
     stage('prepare'){
@@ -38,8 +38,9 @@ pipeline {
         
         //setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
         //setBranches()
-        echo "props.level1"
+        echo "props.level1 +++"
         echo PROPS.level1
+
         echo PROPS.level2
         echo PROPS["level1"]
         echo "props.level1.level2"
