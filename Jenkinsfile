@@ -21,14 +21,14 @@ pipeline {
       steps{
         script{
           if(params.ID_RECORD == "00000"){
-            Console(type: 'error', msg: "No se ha especificado el id del requerimiento")
+            //Console(type: 'error', msg: "No se ha especificado el id del requerimiento")
           }
         }
         
-        createSummary icon: 'info', id: 'ok'
-        setEnvVars(configFiles:['GlobalVars', 'Global2', 'BPM'])
-        addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
-        addShortText(text: "${params.ID_RECORD}",border:0)
+        //createSummary icon: 'info', id: 'ok'
+        //setEnvVars(configFiles:['GlobalVars', 'Global2', 'BPM'])
+        //addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
+        //addShortText(text: "${params.ID_RECORD}",border:0)
         
         //Console(type: 'log', msg: 'Solo estamos probando')
         //Console(type: 'error', msg: 'Solo estamos probando')
@@ -36,8 +36,8 @@ pipeline {
         //Console(type: 'success', msg: 'Solo estamos probando')
         //Console(type: 'success', msg: 'Solo estamos probando\nMultiline\nOther more line')
         
-        setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
-        setBranches()
+        //setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
+        //setBranches()
         println PROPS
       }
     }
@@ -103,13 +103,13 @@ pipeline {
   }//stages
   post{
     always{
-      removeBadges(id: "info")
+      //removeBadges(id: "info")
     }
     success{
-      addBadge(icon: "completed.gif", text: "Finalizado con exito")
+      //addBadge(icon: "completed.gif", text: "Finalizado con exito")
     }
     failure{
-      addErrorBadge(text: "Falla al ejecutar el proyecto ${params.ID_RECORD}")
+      //addErrorBadge(text: "Falla al ejecutar el proyecto ${params.ID_RECORD}")
     }
   }
 }
