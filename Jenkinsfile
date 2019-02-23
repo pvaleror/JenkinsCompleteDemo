@@ -33,7 +33,7 @@ pipeline {
         echo "env.TECH: ${env.TECH}"
         script{
           echo "+++"
-          def srvs = ${env.SRVS}
+          def srvs = env.SRVS
           srvs.each{
             srv -> 
               echo "somo ${srv}"
