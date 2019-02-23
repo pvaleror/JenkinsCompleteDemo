@@ -14,6 +14,7 @@ pipeline {
   environment{
     SOME_TXT = "static text"
     DB_MYSQL = credentials('DB_MYSQL') 
+    PROPS = readYaml('Config/some')
   }
   stages{
     stage('prepare'){
@@ -37,15 +38,7 @@ pipeline {
         
         setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
         setBranches()
-        echo 'IdentificarHerramientas'
-        echo 'crearVista'
-        echo 'AislarCarpeta'
-        echo 'IniciarVistaTmp'
-        echo 'IniciarDeliver'
-        echo 'ObtenerIdActEntrega'
-        echo 'ObtenerObjetos'
-        echo 'RegistrarElementosDesplegar'
-        echo 'RegistrarCambiosCQ'
+        println PROPS
       }
     }
     stage("Desplegar Oracle"){
@@ -56,6 +49,8 @@ pipeline {
         beforeAgent true
       }
       steps{
+        echo 'IniciarDeliver'
+        echo 'ObtenerObjetos'
         echo "other: ${env.OTHERVAR}"
         sh 'echo Construir Instrucciones'
         sh 'echo Desplegar Estructura'
@@ -71,6 +66,8 @@ pipeline {
         beforeAgent true
       }
       steps{
+        echo 'IniciarDeliver'
+        echo 'ObtenerObjetos'
         sh 'echo Establecer Servidor Despliegue'
         sh 'echo -- Crear Carpeta Remota'
         sh 'echo Copiar archivos a server'
@@ -86,7 +83,8 @@ pipeline {
         beforeAgent true
       }
       steps{
-        
+        echo 'IniciarDeliver'
+        echo 'ObtenerObjetos'
         sh 'echo retag'
         sh 'echo retag'
         sh 'echo retag'
