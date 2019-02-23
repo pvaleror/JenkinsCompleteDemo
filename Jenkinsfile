@@ -34,7 +34,7 @@ pipeline {
         script{
           echo "+++"
           def srvs = env.SRVS
-          srvs.each{
+          Console(type: 'log', msg: 'rtn').each{
             srv -> 
               echo "somo ${srv}"
           }

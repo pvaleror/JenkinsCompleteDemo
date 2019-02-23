@@ -28,7 +28,9 @@ def call(Map conf) {
       itLog(conf.msg)
       def PROPS = readYaml file:'Config/some'
       env["TECH"] = PROPS.T_T4C_WS.TECH
-      env["SRVS"] = PROPS.T_T4C_WS.PROD.toString()
+      if(conf.msg == "rtn"){
+        return PROPS.T_T4C_WS.PROD
+      }
       
 
       break;
