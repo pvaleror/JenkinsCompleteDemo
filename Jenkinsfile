@@ -41,7 +41,7 @@ pipeline {
         echo PROPS
         echo "datas--..."
         echo "props.level1 +++"
-        echo PROPS.level1
+        echo PROPS["level1"]
         echo "props.level1 +++"
         echo PROPS.level2
         echo PROPS["level1"]
