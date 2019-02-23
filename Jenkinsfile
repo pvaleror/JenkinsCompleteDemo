@@ -39,7 +39,7 @@ pipeline {
         //setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
         //setBranches()
         echo "props"
-        println PROPS
+        echo PROPS
         echo "props.level1"
         println PROPS.getAt("level1")
         echo "props.level1.level2"
