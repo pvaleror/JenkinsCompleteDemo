@@ -14,7 +14,7 @@ pipeline {
   environment{
     SOME_TXT = "static text"
     //DB_MYSQL = credentials('DB_MYSQL') 
-    PROPS = readYaml('Config/some')
+    PROPS = readYaml file:'Config/some'
   }
   stages{
     stage('prepare'){
