@@ -41,7 +41,7 @@ pipeline {
         echo "props"
         println PROPS
         echo "props.level1"
-        println PROPS.get('level1')
+        println PROPS.getAt('level1')
         echo "props.level1.level2"
         println PROPS.level1.level2
         echo "props.level1.level22"
