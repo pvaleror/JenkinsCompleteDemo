@@ -30,9 +30,10 @@ pipeline {
         //addShortText(text: "${params.ID_RECORD}",border:0)
         echo "${env.SOME_TXT}"
         Console(type: 'log', msg: 'Solo estamos probando')
-        echo "--- ${env.TECH}  ++++"
+        echo "env.TECH: ${env.TECH}"
         script{
-          def srvs = Eval.me(${env.SRVS})
+          echo "+++"
+          def srvs = ${env.SRVS}
           srvs.each{
             srv -> 
               echo "somo ${srv}"
