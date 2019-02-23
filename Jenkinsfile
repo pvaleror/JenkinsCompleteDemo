@@ -30,7 +30,7 @@ pipeline {
         //addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         //addShortText(text: "${params.ID_RECORD}",border:0)
         
-        //Console(type: 'log', msg: 'Solo estamos probando')
+        Console(type: 'log', msg: 'Solo estamos probando')
         //Console(type: 'error', msg: 'Solo estamos probando')
         //Console(type: 'warning', msg: 'Solo estamos probando')
         //Console(type: 'success', msg: 'Solo estamos probando')
@@ -38,7 +38,7 @@ pipeline {
         
         //setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
         //setBranches()
-        PROPS = readYaml file:'Config/some'
+        //PROPS = readYaml file:'Config/some'
         echo PROPS
         
       }
