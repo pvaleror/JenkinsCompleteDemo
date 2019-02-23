@@ -30,6 +30,8 @@ pipeline {
         //addShortText(text: "${params.ID_RECORD}",border:0)
         
         Console(type: 'log', msg: 'Solo estamos probando')
+        echo env.TECH
+        echo env.SRVS
         //Console(type: 'error', msg: 'Solo estamos probando')
         //Console(type: 'warning', msg: 'Solo estamos probando')
         //Console(type: 'success', msg: 'Solo estamos probando')

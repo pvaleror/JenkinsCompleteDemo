@@ -27,11 +27,8 @@ def call(Map conf) {
     case 'log':
       itLog(conf.msg)
       def PROPS = readYaml file:'Config/some'
-      println PROPS.T_T4C_WS.TECH
-      PROPS.T_T4C_WS.PROD.each{
-        srv -> 
-          echo "got to srv: ${srv}"
-      }
+      env["TECH"] = PROPS.T_T4C_WS.TECH
+      env["SRVS"] = PROPS.T_T4C_WS.PROD
       
 
       break;
