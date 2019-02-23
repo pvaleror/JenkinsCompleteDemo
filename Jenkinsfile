@@ -15,11 +15,11 @@ pipeline {
     SOME_TXT = "static text"
     //DB_MYSQL = credentials('DB_MYSQL') 
     PROPS = readYaml file:'Config/some.yml'
-    datas = readYaml text: """
+    datas = [readYaml text: """
 something: 'my datas'
 size: 3
 isEmpty: false
-"""
+"""]
   }
   stages{
     stage('prepare'){
