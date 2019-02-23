@@ -31,7 +31,17 @@ pipeline {
         
         Console(type: 'log', msg: 'Solo estamos probando')
         echo env.TECH
-        echo env.SRVS
+        script{
+          env.SRVS.each{
+            srv -> 
+              echo "somo ${srv}"
+          }
+        }
+        env.SRVS.each{
+          srv -> 
+            echo "somo ${srv}"
+        }
+        
         //Console(type: 'error', msg: 'Solo estamos probando')
         //Console(type: 'warning', msg: 'Solo estamos probando')
         //Console(type: 'success', msg: 'Solo estamos probando')
