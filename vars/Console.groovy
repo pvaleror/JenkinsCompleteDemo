@@ -29,9 +29,8 @@ def call(Map conf) {
       def PROPS = readYaml file:'Config/some'
       println PROPS.T_T4C_WS.TECH
       PROPS.T_T4C_WS.PROD.each{
-        srv -> {
+        srv -> 
           echo "got to srv: ${srv}"
-        }
       }
       
 
