@@ -27,13 +27,7 @@ def call(Map conf) {
     case 'log':
       itLog(conf.msg)
       def PROPS = readYaml file:'Config/some'
-      println PROPS
-      println PROPS.T_T4C_WS
-      println PROPS["T_T4C_WS"]
       println PROPS.T_T4C_WS.TECH
-      println PROPS["T_T4C_WS"].TECH
-      println PROPS["T_T4C_WS"]["TECH"]
-      println PROPS.T_T4C_WS["TECH"]
       
 
       break;
