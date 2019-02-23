@@ -14,7 +14,7 @@ pipeline {
   environment{
     SOME_TXT = "static text"
     //DB_MYSQL = credentials('DB_MYSQL') 
-    PROPS = readYaml file:'Config/some'
+    
   }
   stages{
     stage('prepare'){
@@ -38,17 +38,9 @@ pipeline {
         
         //setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
         //setBranches()
+        PROPS = readYaml file:'Config/some'
         echo PROPS
-        echo "datas--..."
-        echo "props.level1 +++"
-        echo PROPS["level1"]
-        echo "props.level1 +++"
-        echo PROPS.level2
-        echo PROPS["level1"]
-        echo "props.level1.level2"
-        println PROPS.level1.level2
-        echo "props.level1.level22"
-        println PROPS.level1.level22
+        
       }
     }
     stage("Desplegar Oracle"){
