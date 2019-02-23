@@ -28,6 +28,9 @@ def call(Map conf) {
       itLog(conf.msg)
       def PROPS = readYaml file:'Config/some'
       println PROPS
+      println PROPS.T_T4C_WS
+      println PROPS["T_T4C_WS"]
+      println PROPS[T_T4C_WS]
       break;
     case 'error':
       itError(conf.msg)
