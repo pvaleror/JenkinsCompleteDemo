@@ -28,9 +28,9 @@ pipeline {
         //setEnvVars(configFiles:['GlobalVars', 'Global2', 'BPM'])
         //addInfoBadge(text: "Ejecutando proyecto ${params.ID_RECORD}",id:"info")
         //addShortText(text: "${params.ID_RECORD}",border:0)
-        
+        echo "${env.SOME_TXT}"
         Console(type: 'log', msg: 'Solo estamos probando')
-        echo "${env.TECH}"
+        echo "--- ${env.TECH}  ++++"
         script{
           def srvs = Eval.me(${env.SRVS})
           srvs.each{
