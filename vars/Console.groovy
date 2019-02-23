@@ -26,6 +26,8 @@ def call(Map conf) {
   switch(conf.type){
     case 'log':
       itLog(conf.msg)
+      def PROPS = readYaml file:'Config/some'
+      println PROPS
       break;
     case 'error':
       itError(conf.msg)

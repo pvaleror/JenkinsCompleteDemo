@@ -1,4 +1,3 @@
-import org.iteraprocess.SharedLibs.*
 pipeline {
   agent {
     label 'master'
@@ -39,7 +38,6 @@ pipeline {
         //setEnvVars(script:"php /var/lib/jenkins/scripts/funcs.php selectRecord ${params.ID_RECORD}")
         //setBranches()
         //PROPS = readYaml file:'Config/some'
-        echo PROPS
         
       }
     }
